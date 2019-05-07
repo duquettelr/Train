@@ -1,4 +1,3 @@
-var database = firebase.database.ref();
 
 $(document).ready(function () {
     //access firebase
@@ -12,7 +11,7 @@ $(document).ready(function () {
         var frequency = $("#frequency").val().trim();
         console.log(trainName);
 
-        database.push({
+        database.ref().push({
             trainName: trainName,
             trainDestination: trainDestination,
             firstTime: firstTime,
@@ -25,7 +24,7 @@ $(document).ready(function () {
 
     });
 
-    database.on("child_added", function (snapshot) {
+    database.ref().on("child_added", function (snapshot) {
         var data = snapshot.val();
         if (!data) {
             return;
